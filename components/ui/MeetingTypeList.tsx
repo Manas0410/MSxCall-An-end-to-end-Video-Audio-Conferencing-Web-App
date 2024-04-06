@@ -9,6 +9,7 @@ const MeetingTypeListing = () => {
   const [meetingState, setMeetingState] = useState<
     "isScheduleMeeting" | "isJoiningMeeting" | "isInstantMeeting" | undefined
   >(undefined);
+  const createMeeting = () => {};
   return (
     <div className="flex justify-between flex-wrap gap-5">
       <HomeCard
@@ -39,7 +40,14 @@ const MeetingTypeListing = () => {
         className="bg-yellow-1 flex-1"
         handleClick={() => router.push("/recordings")}
       />
-      <MeetingModal />
+      <MeetingModal
+        isOpen={meetingState === "isInstantMeeting"}
+        onClose={() => setMeetingState(undefined)}
+        title="Start an Instant Meeting"
+        className="text-center"
+        buttonText="Start Meeting"
+        handleClick={createMeeting}
+      />
     </div>
   );
 };
