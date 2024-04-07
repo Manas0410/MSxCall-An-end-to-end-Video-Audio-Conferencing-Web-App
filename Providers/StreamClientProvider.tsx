@@ -1,3 +1,6 @@
+"use client";
+import { tokenProvider } from "@/actions/stream.actions";
+import Loader from "@/components/ui/Loader";
 import { useUser } from "@clerk/nextjs";
 import {
   StreamCall,
@@ -25,14 +28,13 @@ const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
         name: user?.username || user?.id,
         image: user?.imageUrl,
       },
-      tokenProvider,
+      tokenProvider: tokenProvider,
     });
+    setVideoClient(client);
   }, [user, isLoaded]);
-  return (
-    <StreamVideo client={client}>
-      <StreamCall call={call}>/* My Video UI */</StreamCall>
-    </StreamVideo>
-  );
+
+  if (!videoClient) return <Loader />;
+  return <StreamVideo client={videoClient}></StreamVideo>;
 };
 
 export default StreamVideoProvider;
