@@ -2,6 +2,15 @@ import SideBar from "@/components/SideBar/SideBar";
 import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/navBar/NavBar";
 import React, { ReactNode } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CUTUU",
+  description: "Video Calling App",
+  icons: {
+    icon: "/icons/logo.svg",
+  },
+};
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
