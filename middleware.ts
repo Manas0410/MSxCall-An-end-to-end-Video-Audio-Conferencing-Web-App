@@ -1,9 +1,12 @@
-import { authMiddleware } from "@clerk/nextjs";
+"use client";
+import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 // import { createRouteMatcher } from "@clerk/nextjs/server";
 // const protectedRoutes = createRouteMatcher();
 
 // See https://clerk.com/docs/references/nextjs/auth-middleware
 // for more information about configuring your Middleware
+
+// @ts-nocheck
 export default authMiddleware({
   // Allow signed out users to access the specified routes:
   // publicRoutes: ['/anyone-can-visit-this-route'],

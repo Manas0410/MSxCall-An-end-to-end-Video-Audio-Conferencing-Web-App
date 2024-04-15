@@ -1,15 +1,36 @@
+"use client";
 import MeetingTypeList from "@/components/ui/MeetingTypeList";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const now = new Date();
-  const time = now.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  const date = new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
-    now
-  );
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    const updateTime = () => {
+      const now = new Date();
+      const newTime = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const newDate = new Intl.DateTimeFormat("en-US", {
+        dateStyle: "full",
+      }).format(now);
+      setTime(newTime);
+      setDate(newDate);
+    };
+
+    // Update time immediately and then every second
+    updateTime();
+    intervalId = setInterval(updateTime, 1000);
+
+    return () => {
+      clearInterval(intervalId); // Cleanup the interval on component unmount
+    };
+  }, []);
+
   return (
     <section className="flex size-full flex-col gap-10 text-white">
       <div className="h-[300px] w-full rounded-[20px] bg-hero bg-cover">
