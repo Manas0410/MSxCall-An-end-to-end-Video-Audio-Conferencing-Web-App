@@ -9,7 +9,6 @@ export default function Home() {
   const [date, setDate] = useState("");
 
   const { upcomingCalls } = useGetCalls();
-  console.log(upcomingCalls, "upcoming");
 
   const [upcomingTime, setUpcomingTime] = useState<string>("");
   useEffect(() => {

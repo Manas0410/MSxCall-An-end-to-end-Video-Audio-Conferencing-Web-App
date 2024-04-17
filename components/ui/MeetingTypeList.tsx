@@ -24,7 +24,7 @@ const MeetingTypeListing = () => {
     link: "",
   });
 
-  const [callDetails, setCallDetails] = useState<Call>();
+  const [callDetails, setCallDetails] = useState<Call | null>();
   const { toast } = useToast();
 
   const createMeeting = async () => {
@@ -139,7 +139,10 @@ const MeetingTypeListing = () => {
       ) : (
         <MeetingModal
           isOpen={meetingState === "isScheduleMeeting"}
-          onClose={() => setMeetingState(undefined)}
+          onClose={() => {
+            setMeetingState(undefined);
+            setCallDetails(null);
+          }}
           title="Meeting Created"
           className="text-center"
           handleClick={() => {
