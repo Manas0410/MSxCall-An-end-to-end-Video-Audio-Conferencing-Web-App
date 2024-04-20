@@ -129,3 +129,9 @@
 .cl-userButtonPopoverFooter{
   display: none
 }
+.meeting-list-wrapper {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+}

@@ -67,7 +67,7 @@ const MeetingTypeListing = () => {
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`;
 
   return (
-    <div className="flex justify-between flex-wrap gap-5">
+    <div className="meeting-list-wrapper">
       <HomeCard
         img="/icons/add-meeting.svg"
         title="New Meeting"
