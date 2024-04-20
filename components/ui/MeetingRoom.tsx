@@ -21,10 +21,17 @@ import { LayoutList, Users } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Loader from "./Loader";
 import EndCallButton from "./EndCallButton";
+import ChatFeature from "./ChatFeature";
 
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
 
 const MeetingRoom = () => {
+  // chat feature
+  const [showChatApp, setShowChatApp] = useState(false);
+  const closeChatApp = () => {
+    setShowChatApp(false);
+  };
+
   const searchParams = useSearchParams();
   const isPersonalRoom = !!searchParams.get("personal");
 
@@ -64,6 +71,16 @@ const MeetingRoom = () => {
         >
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
+        <div
+          className={cn(
+            "h-[calc(100vh-136px)] w-[400px] ml-2 bg-dark-1 px-6 py-6 rounded-2xl top-4 right-4",
+            {
+              hidden: !showChatApp,
+            }
+          )}
+        >
+          <ChatFeature closeChatApp={closeChatApp} />
+        </div>
       </div>
 
       {/* video layout and call controls */}
@@ -102,6 +119,12 @@ const MeetingRoom = () => {
         </button>
 
         {!isPersonalRoom && <EndCallButton />}
+        <div
+          className="flex h-[20px] w-[20px] items-center"
+          onClick={() => setShowChatApp(!showChatApp)}
+        >
+          chat
+        </div>
       </div>
     </section>
   );
